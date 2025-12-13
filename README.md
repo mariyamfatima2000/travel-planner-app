@@ -1,12 +1,14 @@
+
+
 # Travel Planner App
 
-A full-stack web application to plan trips, manage destinations, and track travel details.
+Frontend built with React for the Travel Planner application.
 
 ## Tech Stack
-- Frontend: React
-- Backend: Node.js, Express
-- Database: MongoDB
+- React
+- JavaScript
+- HTML
+- CSS
 
 ## Status
-Work in progress
-
+🚧 Work in progress
