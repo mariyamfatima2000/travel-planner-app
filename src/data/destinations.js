@@ -1,18 +1,8 @@
+// src/data/destinations.js
 const destinations = [
-  {
-    id: 1,
-    city: "Jaipur",
-    dailyCost: 1500,
-    bestSeason: "Oct–Feb",
-    minDays: 2
-  },
-  {
-    id: 2,
-    city: "Manali",
-    dailyCost: 1800,
-    bestSeason: "Mar–Jun",
-    minDays: 3
-  }
+  { id: 1, name: "Jaipur", price: 2000 },
+  { id: 2, name: "Manali", price: 4500 },
+  { id: 3, name: "Goa", price: 6000 },
 ];
 
 export default destinations;

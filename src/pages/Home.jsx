@@ -1,39 +1,38 @@
-import { useState } from "react";
+// src/pages/Home.jsx
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Home() {
+const Home = () => {
   const [budget, setBudget] = useState("");
-  const [days, setDays] = useState("");
   const navigate = useNavigate();
 
-  const handleSearch = () => {
-    // Navigate to /results and pass budget & days via URL query
-    navigate(`/results?budget=${budget}&days=${days}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (budget && !isNaN(budget)) {
+      // Navigate to Results page with budget in URL
+      navigate(`/results?budget=${budget}`);
+    } else {
+      alert("Please enter a valid number for budget.");
+    }
   };
 
   return (
-    <div>
-      <h1>Home</h1>
-      <label>
-        Budget: 
-        <input 
-          type="number" 
-          value={budget} 
-          onChange={e => setBudget(e.target.value)} 
-        />
-      </label>
-      <br />
-      <label>
-        Days: 
-        <input 
-          type="number" 
-          value={days} 
-          onChange={e => setDays(e.target.value)} 
-        />
-      </label>
-      <br />
-      <button onClick={handleSearch}>Search</button>
+    <div style={{ padding: "20px" }}>
+      <h1>Travel Planner</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Enter your budget:
+          <input
+            type="number"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+            placeholder="Enter budget in ₹"
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
     </div>
   );
-}
+};
 
+export default Home;

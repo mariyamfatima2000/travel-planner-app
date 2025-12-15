@@ -1,31 +1,35 @@
+// src/pages/Results.jsx
+import React from "react";
 import { useLocation } from "react-router-dom";
 import destinations from "../data/destinations";
 
-export default function Results() {
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const budget = Number(params.get("budget"));
-  const days = Number(params.get("days"));
+const Results = () => {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const budget = Number(query.get("budget"));
 
-  const filtered = destinations.filter(
-    d => d.dailyCost * days <= budget && days >= d.minDays
+  const filteredDestinations = destinations.filter(
+    (dest) => dest.price <= budget
   );
 
   return (
-    <div>
-      <h1>Results</h1>
-      {filtered.length === 0 ? (
-        <p>No destinations found.</p>
+    <div style={{ padding: "20px" }}>
+      <h2>Results</h2>
+      <p>Budget received: {budget}</p>
+
+      {filteredDestinations.length > 0 ? (
+        <ul>
+          {filteredDestinations.map((dest) => (
+            <li key={dest.id}>
+              {dest.name} - ₹{dest.price}
+            </li>
+          ))}
+        </ul>
       ) : (
-        filtered.map(d => (
-          <div key={d.id}>
-            <h2>{d.city}</h2>
-            <p>Daily Cost: ₹{d.dailyCost}</p>
-            <p>Total Cost: ₹{d.dailyCost * days}</p>
-            <p>Best Season: {d.bestSeason}</p>
-          </div>
-        ))
+        <p>No destinations found for this budget.</p>
       )}
     </div>
   );
-}
+};
+
+export default Results;
